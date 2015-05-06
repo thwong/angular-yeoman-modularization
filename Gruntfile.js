@@ -41,6 +41,10 @@ module.exports = function (grunt) {
         files: ['test/spec/{,*/}*.{coffee,litcoffee,coffee.md}'],
         tasks: ['newer:coffee:test', 'karma']
       },
+      less: {
+        files: ['<%= yeoman.app %>/styles/**/*.less'],
+        tasks: ['less:development']
+      },
       styles: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
         tasks: ['newer:copy:styles', 'autoprefixer']
@@ -156,6 +160,22 @@ module.exports = function (grunt) {
       app: {
         src: ['<%= yeoman.app %>/index.html'],
         ignorePath:  /\.\.\//
+      }
+    },
+
+    // Compiles LESS to CSS
+    less: {
+      development: {
+        options: {
+          paths: ['<%= yeoman.app %>/styles']
+        },
+        files: {
+          '<%= yeoman.app %>/styles/base.css': '<%= yeoman.app %>/styles/base.less',
+          '<%= yeoman.app %>/styles/layout.css': '<%= yeoman.app %>/styles/layout.less',
+          '<%= yeoman.app %>/styles/module.css': '<%= yeoman.app %>/styles/module.less',
+          '<%= yeoman.app %>/styles/state.css': '<%= yeoman.app %>/styles/state.less',
+          '<%= yeoman.app %>/styles/theme.css': '<%= yeoman.app %>/styles/theme.less'
+        }
       }
     },
 
