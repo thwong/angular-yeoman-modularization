@@ -13,6 +13,9 @@ angular
     'ui.router'
     'oc.lazyLoad'
   ])
+  # Configure HTML5 clean URL
+  .config ($locationProvider) ->
+    $locationProvider.html5Mode(true).hashPrefix('!')
   # Configure the UI Router
   .config ($stateProvider, $urlRouterProvider) ->
     # Redirect any unmatched URL to /
