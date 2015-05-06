@@ -16,7 +16,6 @@ module.exports = (config) ->
       'bower_components/angular/angular.js'
       'bower_components/angular-mocks/angular-mocks.js'
       'app/scripts/**/*.coffee'
-      'test/mock/**/*.coffee'
       'test/spec/**/*.coffee'
     ],
 
