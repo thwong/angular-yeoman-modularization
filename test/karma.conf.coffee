@@ -15,6 +15,8 @@ module.exports = (config) ->
     files: [
       'bower_components/angular/angular.js'
       'bower_components/angular-mocks/angular-mocks.js'
+      'bower_components/angular-ui-router/release/angular-ui-router.js'
+      'bower_components/oclazyload/dist/ocLazyLoad.min.js'
       'app/scripts/**/*.coffee'
       'test/spec/**/*.coffee'
     ],
@@ -41,11 +43,22 @@ module.exports = (config) ->
       'PhantomJS'
     ]
 
+    # Unit test coverage report configuration
+    coverageReporter: {
+      type: 'lcov'
+      dir: 'coverage/'
+      subdir: '.'
+    }
+
+    # Unit test coverage reporter
+    reporters: ['progress', 'coverage']
+
     # Which plugins to enable
     plugins: [
       'karma-phantomjs-launcher'
       'karma-jasmine'
       'karma-coffee-preprocessor'
+      'karma-coverage'
     ]
 
     # enable / disable watching file and executing tests whenever any file changes
@@ -57,7 +70,10 @@ module.exports = (config) ->
 
     colors: true
 
-    preprocessors: '**/*.coffee': ['coffee']
+    preprocessors: {
+      '**/*.coffee': ['coffee']
+      'app/**/*.coffee': ['coverage']
+    }
 
     # Uncomment the following lines if you are using grunt's server to run the tests
     # proxies: '/': 'http://localhost:9000/'
