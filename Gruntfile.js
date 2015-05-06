@@ -155,6 +155,15 @@ module.exports = function (grunt) {
       }
     },
 
+    // i18n Get Text Configuration
+    nggettext_extract: {
+      pot: {
+        files: {
+          'po/template.pot' : ['<%= yeoman.app %>/views/{,*/}*.html']
+        }
+      }
+    },
+
     // Automatically inject Bower components into the app
     wiredep: {
       app: {
@@ -437,7 +446,8 @@ module.exports = function (grunt) {
     'uglify',
     'filerev',
     'usemin',
-    'htmlmin'
+    'htmlmin',
+    'nggettext_extract:pot'
   ]);
 
   grunt.registerTask('default', [

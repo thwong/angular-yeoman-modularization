@@ -10,8 +10,9 @@
 ###
 angular
   .module('angularYeomanModularizationApp', [
-    'ui.router'
-    'oc.lazyLoad'
+    'ui.router'    # Angular UI Router
+    'oc.lazyLoad'  # Lazy Loader
+    'gettext'      # i18n Support
   ])
   # Configure HTML5 clean URL
   .config ($locationProvider) ->

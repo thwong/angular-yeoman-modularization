@@ -17,6 +17,7 @@ module.exports = (config) ->
       'bower_components/angular-mocks/angular-mocks.js'
       'bower_components/angular-ui-router/release/angular-ui-router.js'
       'bower_components/oclazyload/dist/ocLazyLoad.min.js'
+      'bower_components/angular-gettext/dist/angular-gettext.js'
       'app/scripts/**/*.coffee'
       'test/spec/**/*.coffee'
     ],
