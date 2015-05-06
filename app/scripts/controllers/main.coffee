@@ -8,9 +8,8 @@
  # Controller of the angularYeomanModularizationApp
 ###
 angular.module('angularYeomanModularizationApp')
-  .controller 'MainCtrl', ($scope) ->
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate'
-      'AngularJS'
-      'Karma'
-    ]
+  .controller 'MainCtrl', ($scope, gettextCatalog) ->
+
+    $scope.switchLanguage = (lang) ->
+      gettextCatalog.setCurrentLanguage(lang)
+      gettextCatalog.loadRemote('languages/' + lang + '.json')

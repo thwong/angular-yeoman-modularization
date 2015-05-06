@@ -164,6 +164,25 @@ module.exports = function (grunt) {
       }
     },
 
+    // i18n Get Text Compile support
+    nggettext_compile: {
+      all: {
+        options: {
+          format: 'json'
+        },
+        files: [
+          {
+            expand: true,
+            dot: true,
+            cwd: 'po',
+            dest: '<%= yeoman.app %>/languages',
+            src: ['*.po'],
+            ext: '.json'
+          }
+        ]
+      }
+    },
+
     // Automatically inject Bower components into the app
     wiredep: {
       app: {
@@ -354,7 +373,8 @@ module.exports = function (grunt) {
             '*.html',
             'views/{,*/}*.html',
             'images/{,*/}*.{webp}',
-            'fonts/*'
+            'fonts/*',
+            'languages/*'
           ]
         }, {
           expand: true,
@@ -366,6 +386,11 @@ module.exports = function (grunt) {
           cwd: 'bower_components/bootstrap/dist',
           src: 'fonts/*',
           dest: '<%= yeoman.dist %>'
+        }, {
+          expand: true,
+          cwd: 'languages',
+          src: '*.json',
+          dest: '<%= yeoman.dist %>/languages'
         }]
       },
       styles: {
@@ -447,7 +472,8 @@ module.exports = function (grunt) {
     'filerev',
     'usemin',
     'htmlmin',
-    'nggettext_extract:pot'
+    'nggettext_extract:pot',
+    'nggettext_compile'
   ]);
 
   grunt.registerTask('default', [

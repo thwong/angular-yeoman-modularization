@@ -7,13 +7,23 @@ describe 'Controller: MainCtrl', ->
 
   MainCtrl = {}
   scope = {}
+  gettextCatalog = {
+    setCurrentLanguage: () -> return true
+    loadRemote: () -> return true
+  }
 
   # Initialize the controller and a mock scope
   beforeEach inject ($controller, $rootScope) ->
     scope = $rootScope.$new()
     MainCtrl = $controller 'MainCtrl', {
       $scope: scope
+      gettextCatalog: gettextCatalog
     }
+    spyOn(gettextCatalog, 'setCurrentLanguage')
+    spyOn(gettextCatalog, 'loadRemote')
 
-  it 'should attach a list of awesomeThings to the scope', ->
-    expect(scope.awesomeThings.length).toBe 3
+  it('should load the remote language file and set the language when calling switchLanguage', () ->
+    scope.switchLanguage()
+    expect(gettextCatalog.setCurrentLanguage).toHaveBeenCalled()
+    expect(gettextCatalog.loadRemote).toHaveBeenCalled()
+  )
