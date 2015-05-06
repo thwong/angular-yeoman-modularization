@@ -9,4 +9,25 @@
  # Main module of the application.
 ###
 angular
-  .module('angularYeomanModularizationApp', [])
+  .module('angularYeomanModularizationApp', [
+    'ui.router'
+    'oc.lazyLoad'
+  ])
+  # Configure the UI Router
+  .config ($stateProvider, $urlRouterProvider) ->
+    # Redirect any unmatched URL to /
+    $urlRouterProvider.otherwise("/")
+    $stateProvider
+      .state('mainState', {
+        url: '/'
+        views: {
+          '' : {
+            controller: 'MainCtrl'
+            templateUrl: 'views/main.html'
+          }
+        }
+        resolve: {
+          files: ($ocLazyLoad) ->
+            return $ocLazyLoad.load('scripts/controllers/main.js')
+        }
+      })
