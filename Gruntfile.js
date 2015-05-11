@@ -41,9 +41,9 @@ module.exports = function (grunt) {
         files: ['test/spec/{,*/}*.{coffee,litcoffee,coffee.md}'],
         tasks: ['newer:coffee:test', 'karma']
       },
-      less: {
-        files: ['<%= yeoman.app %>/styles/**/*.less'],
-        tasks: ['less:development']
+      compass: {
+        files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+        tasks: ['compass:server', 'autoprefixer']
       },
       styles: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
@@ -188,22 +188,10 @@ module.exports = function (grunt) {
       app: {
         src: ['<%= yeoman.app %>/index.html'],
         ignorePath:  /\.\.\//
-      }
-    },
-
-    // Compiles LESS to CSS
-    less: {
-      development: {
-        options: {
-          paths: ['<%= yeoman.app %>/styles']
-        },
-        files: {
-          '<%= yeoman.app %>/styles/base.css': '<%= yeoman.app %>/styles/base.less',
-          '<%= yeoman.app %>/styles/layout.css': '<%= yeoman.app %>/styles/layout.less',
-          '<%= yeoman.app %>/styles/module.css': '<%= yeoman.app %>/styles/module.less',
-          '<%= yeoman.app %>/styles/state.css': '<%= yeoman.app %>/styles/state.less',
-          '<%= yeoman.app %>/styles/theme.css': '<%= yeoman.app %>/styles/theme.less'
-        }
+      },
+      sass: {
+        src: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+        ignorePath: /(\.\.\/){1,2}bower_components\//
       }
     },
 
@@ -230,6 +218,35 @@ module.exports = function (grunt) {
           dest: '.tmp/spec',
           ext: '.js'
         }]
+      }
+    },
+
+    // Compiles Sass to CSS and generates necessary files if requested
+    compass: {
+      options: {
+        sassDir: '<%= yeoman.app %>/styles',
+        cssDir: '.tmp/styles',
+        generatedImagesDir: '.tmp/images/generated',
+        imagesDir: '<%= yeoman.app %>/images',
+        javascriptsDir: '<%= yeoman.app %>/scripts',
+        fontsDir: '<%= yeoman.app %>/styles/fonts',
+        importPath: './bower_components',
+        httpImagesPath: '/images',
+        httpGeneratedImagesPath: '/images/generated',
+        httpFontsPath: '/styles/fonts',
+        relativeAssets: false,
+        assetCacheBuster: false,
+        raw: 'Sass::Script::Number.precision = 10\n'
+      },
+      dist: {
+        options: {
+          generatedImagesDir: '<%= yeoman.dist %>/images/generated'
+        }
+      },
+      server: {
+        options: {
+          debugInfo: true
+        }
       }
     },
 
@@ -383,14 +400,14 @@ module.exports = function (grunt) {
           src: ['generated/*']
         }, {
           expand: true,
-          cwd: 'bower_components/bootstrap/dist',
-          src: 'fonts/*',
-          dest: '<%= yeoman.dist %>'
-        }, {
-          expand: true,
           cwd: 'languages',
           src: '*.json',
           dest: '<%= yeoman.dist %>/languages'
+        }, {
+          expand: true,
+          cwd: '.',
+          src: 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*',
+          dest: '<%= yeoman.dist %>'
         }]
       },
       styles: {
@@ -405,15 +422,15 @@ module.exports = function (grunt) {
     concurrent: {
       server: [
         'coffee:dist',
-        'copy:styles'
+        'compass:server'
       ],
       test: [
         'coffee',
-        'copy:styles'
+        'compass'
       ],
       dist: [
         'coffee',
-        'copy:styles',
+        'compass:dist',
         'imagemin',
         'svgmin'
       ]

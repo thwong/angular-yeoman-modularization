@@ -1,0 +1,4 @@
+// The layout.scss should contain only styles for the main structure of the site,
+// Styling for individual components of the page should be added to the module.scss instead.
+// i.e., #header { margin-top: 0 } --> GOOD
+// i.e., .module-header { padding-top:0 } --> BAD
