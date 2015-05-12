@@ -10,9 +10,10 @@
 ###
 angular
   .module('angularYeomanModularizationApp', [
-    'ui.router'    # Angular UI Router
-    'oc.lazyLoad'  # Lazy Loader
-    'gettext'      # i18n Support
+    'ui.router'               # Angular UI Router
+    'oc.lazyLoad'             # Lazy Loader
+    'pascalprecht.translate'  # Angular Translate
+    'config.i18n'             # Default language configuration
   ])
   # Configure HTML5 clean URL
   .config ($locationProvider) ->
@@ -21,3 +22,11 @@ angular
   .config ($stateProvider, $urlRouterProvider) ->
     # Redirect any unmatched URL to /
     $urlRouterProvider.otherwise("/")
+  # Configure i18n loader
+  .config ($translateProvider, DefaultLang) ->
+    $translateProvider.translations('en', DefaultLang.en)
+    $translateProvider.useStaticFilesLoader({prefix: 'languages/', suffix: '.json'})
+    # $translateProvider.useMessageFormatInterpolation()
+    $translateProvider.useSanitizeValueStrategy('escaped')
+    $translateProvider.preferredLanguage('en')
+    $translateProvider.fallbackLanguage('en')

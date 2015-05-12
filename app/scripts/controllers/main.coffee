@@ -8,8 +8,12 @@
  # Controller of the angularYeomanModularizationApp
 ###
 angular.module('angularYeomanModularizationApp')
-  .controller 'MainCtrl', ($scope, gettextCatalog) ->
+  .controller 'MainCtrl', ($scope, $translate) ->
 
-    $scope.switchLanguage = (lang) ->
-      gettextCatalog.setCurrentLanguage(lang)
-      gettextCatalog.loadRemote('languages/' + lang + '.json')
+    $scope.langModel = {
+      name: 'Tim'
+      gender: 'male'
+    }
+
+    $scope.changeLanguage = (key) ->
+      $translate.use(key)

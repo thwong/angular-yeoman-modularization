@@ -140,6 +140,24 @@ module.exports = function (grunt) {
       server: '.tmp'
     },
 
+    // Replace string in i18n file
+    replace: {
+      defaultLang: {
+        options: {
+          patterns: [{
+            match: 'content',
+            replacement: '<%= JSON.stringify(grunt.file.readJSON(\'./app/languages/en.json\')) %>'
+          }]
+        },
+        files: [{
+          expand: true,
+          flatten: true,
+          src: ['./config/defaultlang.coffee'],
+          dest: '<%= yeoman.app %>/scripts/services'
+        }]
+      }
+    },
+
     // Add vendor prefixed styles
     autoprefixer: {
       options: {
@@ -453,6 +471,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'replace:defaultLang',
       'wiredep',
       'concurrent:server',
       'autoprefixer',
@@ -468,6 +487,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', [
     'clean:server',
+    'replace:defaultLang',
     'concurrent:test',
     'autoprefixer',
     'connect:test',
@@ -476,6 +496,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'replace:defaultLang',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
@@ -488,9 +509,7 @@ module.exports = function (grunt) {
     'uglify',
     'filerev',
     'usemin',
-    'htmlmin',
-    'nggettext_extract:pot',
-    'nggettext_compile'
+    'htmlmin'
   ]);
 
   grunt.registerTask('default', [
