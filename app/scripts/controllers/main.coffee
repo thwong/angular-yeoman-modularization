@@ -2,12 +2,12 @@
 
 ###*
  # @ngdoc function
- # @name angularYeomanModularizationApp.controller:MainCtrl
+ # @name networkApp.controller:MainCtrl
  # @description
  # # MainCtrl
- # Controller of the angularYeomanModularizationApp
+ # Controller of the networkApp
 ###
-angular.module('angularYeomanModularizationApp')
+angular.module('networkApp')
   .controller 'MainCtrl', ($scope, $translate) ->
 
     $scope.langModel = {

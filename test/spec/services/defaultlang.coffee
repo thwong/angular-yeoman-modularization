@@ -3,7 +3,7 @@
 describe 'Service: DefaultLang', ->
 
   # load the service's module
-  beforeEach module 'angularYeomanModularizationApp'
+  beforeEach module 'networkApp'
 
   # instantiate service
   DefaultLang = {}

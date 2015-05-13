@@ -1,7 +1,7 @@
 'use strict'
 
 angular
-  .module('angularYeomanModularizationApp')
+  .module('networkApp')
   # Configure the mainState route
   .config ($stateProvider) ->
     $stateProvider
