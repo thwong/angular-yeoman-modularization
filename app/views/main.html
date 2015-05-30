@@ -1,12 +1,14 @@
-<div class="row">
-  <div class="col-xs-10 col-xs-offset-1">
-      <h1 translate="title"></h1>
-      <h3>{{'welcome' | translate:langModel }}</h3>
-      <br/>
-      <h4 ng-show="langModel.name=='Tim'"><a href="" ng-click="langModel.name='Mary'" translate="i-am-mary"></a></h4>
-      <h4 ng-show="langModel.name=='Mary'"><a href="" ng-click="langModel.name='Tim'" translate="i-am-tim"></a></h4>
-      <br/>
-      <h4><a href="" ng-click="changeLanguage('zh')" translate="i-read-chinese"></a></h4>
-      <h4><a href="" ng-click="changeLanguage('en')" translate="i-read-english"></a></h4>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-1">
+        <h1 translate="title"></h1>
+        <h3>{{'welcome' | translate:langModel }}</h3>
+        <br/>
+        <h4 ng-show="langModel.name=='Tim'"><a href="" ng-click="langModel.name='Mary'" translate="i-am-mary"></a></h4>
+        <h4 ng-show="langModel.name=='Mary'"><a href="" ng-click="langModel.name='Tim'" translate="i-am-tim"></a></h4>
+        <br/>
+        <h4><a href="" ng-click="changeLanguage('zh')" translate="i-read-chinese"></a></h4>
+        <h4><a href="" ng-click="changeLanguage('en')" translate="i-read-english"></a></h4>
+    </div>
   </div>
 </div>

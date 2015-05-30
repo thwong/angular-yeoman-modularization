@@ -13,10 +13,6 @@ angular
             templateUrl: 'views/main.html'
           }
         }
-        resolve: {
-          files: ($ocLazyLoad) ->
-            return $ocLazyLoad.load('scripts/controllers/main.js')
-        }
       })
       .state('aboutState', {
         url: '/about'
@@ -25,9 +21,5 @@ angular
             controller: 'AboutCtrl'
             templateUrl: 'views/about.html'
           }
-        }
-        resolve: {
-          files: ($ocLazyLoad) ->
-            return $ocLazyLoad.load('scripts/controllers/about.js')
         }
       })

@@ -438,6 +438,11 @@ module.exports = function (grunt) {
           dest: '<%= yeoman.dist %>/languages'
         }, {
           expand: true,
+          cwd: 'template',
+          src: '**',
+          dest: '<%= yeoman.dist %>/template'
+        }, {
+          expand: true,
           cwd: '.',
           src: 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*',
           dest: '<%= yeoman.dist %>'
