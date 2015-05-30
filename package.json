@@ -45,6 +45,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "connect-modrewrite": "^0.8.1"
+    "connect-modrewrite": "^0.8.1",
+    "grunt-connect-proxy": "^0.2.0"
   }
 }
