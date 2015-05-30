@@ -11,7 +11,6 @@
 app = angular
   .module('angularYeomanModularizationApp', [
     'ui.router'               # Angular UI Router
-    'oc.lazyLoad'             # Lazy Loader
     'pascalprecht.translate'  # Angular Translate
     'config.i18n'             # Default language configuration
   ])

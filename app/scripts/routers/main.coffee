@@ -21,8 +21,4 @@ angular
         url: '/about'
         controller: 'AboutCtrl'
         templateUrl: 'views/about.html'
-        # resolve: {
-        #   files: ($ocLazyLoad) ->
-        #     return $ocLazyLoad.load('scripts/controllers/about.js')
-        # }
       })
