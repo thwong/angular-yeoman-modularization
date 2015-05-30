@@ -188,34 +188,6 @@ module.exports = function (grunt) {
       }
     },
 
-    // i18n Get Text Configuration
-    nggettext_extract: {
-      pot: {
-        files: {
-          'po/template.pot' : ['<%= yeoman.app %>/views/{,*/}*.html']
-        }
-      }
-    },
-
-    // i18n Get Text Compile support
-    nggettext_compile: {
-      all: {
-        options: {
-          format: 'json'
-        },
-        files: [
-          {
-            expand: true,
-            dot: true,
-            cwd: 'po',
-            dest: '<%= yeoman.app %>/languages',
-            src: ['*.po'],
-            ext: '.json'
-          }
-        ]
-      }
-    },
-
     // Automatically inject Bower components into the app
     wiredep: {
       app: {
@@ -299,7 +271,7 @@ module.exports = function (grunt) {
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
     useminPrepare: {
-      html: '<%= yeoman.app %>/index.html',
+      html: ['<%= yeoman.app %>/**/*.html'],
       options: {
         dest: '<%= yeoman.dist %>',
         flow: {
@@ -316,7 +288,7 @@ module.exports = function (grunt) {
 
     // Performs rewrites based on filerev and the useminPrepare configuration
     usemin: {
-      html: ['<%= yeoman.dist %>/{,*/}*.html'],
+      html: ['<%= yeoman.dist %>/**/*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
       options: {
         assetsDirs: ['<%= yeoman.dist %>','<%= yeoman.dist %>/images']

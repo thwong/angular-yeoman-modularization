@@ -7,10 +7,16 @@
  # # AboutCtrl
  # Controller of the angularYeomanModularizationApp
 ###
-angular.module('angularYeomanModularizationApp')
-  .controller 'AboutCtrl', ($scope) ->
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate'
-      'AngularJS'
-      'Karma'
-    ]
+AboutCtrl = ['$scope', ($scope) ->
+  $scope.awesomeThings = [
+    'HTML5 Boilerplate'
+    'AngularJS'
+    'Karma'
+  ]
+]
+
+app = angular.module('angularYeomanModularizationApp')
+if app.controllerProvider
+  app.controllerProvider.register('AboutCtrl', AboutCtrl)
+else
+  app.controller('AboutCtrl', AboutCtrl)

@@ -18,7 +18,13 @@ module.exports = (config) ->
       'bower_components/angular-ui-router/release/angular-ui-router.js'
       'bower_components/oclazyload/dist/ocLazyLoad.min.js'
       'bower_components/angular-gettext/dist/angular-gettext.js'
-      'app/scripts/**/*.coffee'
+      'bower_components/angular-translate/angular-translate.js'
+      'bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js'
+      'app/scripts/app.coffee'
+      'app/scripts/controllers/*.coffee'
+      'app/scripts/directives/*.coffee'
+      'app/scripts/routers/*.coffee'
+      'app/scripts/services/*.coffee'
       'test/spec/**/*.coffee'
     ],
 
